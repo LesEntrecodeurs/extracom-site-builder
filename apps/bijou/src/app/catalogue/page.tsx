@@ -50,10 +50,15 @@ export default async function CataloguePage({
 			getCatalogs(),
 		]);
 	} catch (caught) {
-		error =
-			caught instanceof ApiError
-				? caught.message
-				: "Le catalogue est momentanément indisponible. Vérifiez que l'API tourne sur le port 3000.";
+		if (caught instanceof ApiError) {
+			error =
+				caught.status === 429
+					? "Le catalogue reçoit un trafic important en ce moment. Merci de réessayer dans quelques instants."
+					: caught.message;
+		} else {
+			error =
+				"Le catalogue est momentanément indisponible. Vérifiez que l'API tourne sur le port 3000.";
+		}
 		[families, catalogs] = await Promise.all([
 			getFamilies().catch(() => []),
 			getCatalogs().catch(() => []),
