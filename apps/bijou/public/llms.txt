@@ -1,0 +1,29 @@
+# Bijou — Maison de joaillerie
+
+> Démonstration e-commerce de joaillerie (bijoux or et argent, horlogerie, orfèvrerie) dont le catalogue est alimenté en direct par l'API catalogue Extracom100, qui expose en lecture seule les articles d'une gestion Sage100. Base de démonstration : BIJOU (Sage).
+
+## Catalogue
+
+- 70 références réparties en 13 familles (bijouterie or, bijouterie argent, montres, orfèvrerie, accessoires, prestations).
+- Catalogue filtrable par arborescence (or, argent, montres…), par famille et par fourchette de prix.
+- Recherche plein-texte sur la référence et la désignation, tri par prix, nom ou référence.
+- Chaque pièce dispose d'une fiche : désignation, référence, prix, famille, variantes (gammes), poids et description.
+
+## Pages principales
+
+- Accueil : /
+- Catalogue (liste, filtres, tri, recherche) : /catalogue
+- Fiche produit : /produit/{reference}
+- La maison : /a-propos
+- Contact : /contact
+
+## Fonctionnement
+
+- Le site lit le catalogue via l'API Extracom100 (`/api/v1/articles`, `/families`, `/catalogs`), authentifiée par token de boutique, côté serveur uniquement.
+- Lecture seule : pas de panier ni de paiement. Les demandes passent par la page Contact en mentionnant la référence.
+- Données affichées (références, prix, familles) synchronisées avec la gestion Sage, sans double saisie.
+
+## Contact
+
+- E-mail : contact@bijou.example
+- Téléphone : +33 3 00 00 00 00

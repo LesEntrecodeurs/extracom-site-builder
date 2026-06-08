@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: #faf8f4;
+		--background-secondary: #f3efe7;
+		--foreground: #1c1a17;
+		--ink: #1c1a17;
+
+		--gold: #9c7c3c;
+		--gold-soft: #efe6d2;
+		--gold-foreground: #ffffff;
+
+		--card: #ffffff;
+		--card-foreground: #1c1a17;
+
+		--muted: #f3efe7;
+		--muted-foreground: #6f675b;
+
+		--border: #e4ddd0;
+		--ring: #9c7c3c;
+
+		--radius: 0.25rem;
+	}
+
+	* {
+		border-color: var(--border);
+	}
+
+	body {
+		background-color: var(--background);
+		color: var(--foreground);
+		font-feature-settings:
+			"liga" 1,
+			"calt" 1;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	::selection {
+		background-color: var(--gold);
+		color: var(--gold-foreground);
+	}
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.eyebrow {
+		font-size: 0.6875rem;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--gold);
+		font-weight: 600;
+	}
+}
