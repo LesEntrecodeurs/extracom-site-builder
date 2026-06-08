@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Article } from "@/lib/api/types";
 import { cn } from "@/lib/utils";
 
@@ -26,8 +29,9 @@ type Props = {
 
 export function ProductImage({ article, className, sizes, priority }: Props) {
 	const src = primaryImage(article);
+	const [failed, setFailed] = useState(false);
 
-	if (src) {
+	if (src && !failed) {
 		return (
 			<div className={cn("relative overflow-hidden bg-muted", className)}>
 				<Image
@@ -37,6 +41,7 @@ export function ProductImage({ article, className, sizes, priority }: Props) {
 					sizes={sizes ?? "(max-width: 768px) 100vw, 33vw"}
 					className="object-cover transition-transform duration-700 group-hover:scale-105"
 					priority={priority}
+					onError={() => setFailed(true)}
 				/>
 			</div>
 		);
