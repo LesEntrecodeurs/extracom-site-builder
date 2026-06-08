@@ -14,6 +14,13 @@ function config() {
 	return { baseUrl: baseUrl.replace(/\/$/, ""), token };
 }
 
+function authHeaders(token: string): Record<string, string> {
+	const headers: Record<string, string> = { Authorization: `Bearer ${token}` };
+	const origin = process.env.EXTRACOM_API_ORIGIN;
+	if (origin) headers.Origin = origin;
+	return headers;
+}
+
 export class ApiError extends Error {
 	constructor(
 		public readonly status: number,
@@ -31,7 +38,7 @@ export async function fetchJson<T>(
 ): Promise<T> {
 	const { baseUrl, token } = config();
 	const response = await fetch(`${baseUrl}${path}`, {
-		headers: { Authorization: `Bearer ${token}` },
+		headers: authHeaders(token),
 		next: { revalidate },
 	});
 	if (!response.ok) {
@@ -50,7 +57,7 @@ export async function requestWithBody<T>(path: string, body: unknown): Promise<T
 	const response = await request(`${baseUrl}${path}`, {
 		method: "GET",
 		headers: {
-			Authorization: `Bearer ${token}`,
+			...authHeaders(token),
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(body),
