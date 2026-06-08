@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FiltersPanel } from "@/components/catalogue/filters-panel";
+import { LimitSelect } from "@/components/catalogue/limit-select";
 import { Pagination } from "@/components/catalogue/pagination";
 import { ProductCard } from "@/components/catalogue/product-card";
 import { SearchBar } from "@/components/catalogue/search-bar";
@@ -60,9 +61,9 @@ export default async function CataloguePage({
 	}
 
 	const { data, pagination } = result;
-	const totalPages = Math.max(1, Math.ceil(pagination.total / PAGE_SIZE));
-	const start = pagination.total === 0 ? 0 : (state.page - 1) * PAGE_SIZE + 1;
-	const end = Math.min(state.page * PAGE_SIZE, pagination.total);
+	const totalPages = Math.max(1, Math.ceil(pagination.total / state.limit));
+	const start = pagination.total === 0 ? 0 : (state.page - 1) * state.limit + 1;
+	const end = Math.min((state.page - 1) * state.limit + data.length, pagination.total);
 
 	return (
 		<div className="container py-10 md:py-14">
@@ -104,13 +105,16 @@ export default async function CataloguePage({
 				<div className="mt-6 lg:col-span-9 lg:mt-0">
 					<div className="mb-6 flex flex-col gap-4">
 						<SearchBar />
-						<div className="flex items-center justify-between gap-4">
+						<div className="flex flex-wrap items-center justify-between gap-3">
 							<p className="text-sm text-muted-foreground" aria-live="polite">
 								{pagination.total > 0
 									? `${start}–${end} sur ${pagination.total} article${pagination.total > 1 ? "s" : ""}`
 									: "Aucun article"}
 							</p>
-							<SortSelect />
+							<div className="flex items-center gap-3">
+								<LimitSelect />
+								<SortSelect />
+							</div>
 						</div>
 					</div>
 

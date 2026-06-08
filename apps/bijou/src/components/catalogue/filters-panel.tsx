@@ -4,6 +4,7 @@ import { SlidersHorizontal } from "lucide-react";
 import { CatalogTree } from "@/components/catalogue/catalog-tree";
 import { FamilyFilter } from "@/components/catalogue/family-filter";
 import { PriceFilter } from "@/components/catalogue/price-filter";
+import { WeightFilter } from "@/components/catalogue/weight-filter";
 import type { CatalogNode, Family } from "@/lib/api/types";
 import { countActiveFilters } from "@/lib/catalogue-params";
 import { useCatalogueNav } from "@/lib/use-catalogue-nav";
@@ -41,6 +42,8 @@ export function FiltersPanel({
 								catId: null,
 								priceMin: null,
 								priceMax: null,
+								weightMinG: null,
+								weightMaxG: null,
 							})
 						}
 						className="text-xs text-gold underline-offset-2 hover:underline"
@@ -57,6 +60,9 @@ export function FiltersPanel({
 			</Section>
 			<Section title="Prix (€)">
 				<PriceFilter />
+			</Section>
+			<Section title="Poids (g)">
+				<WeightFilter />
 			</Section>
 		</>
 	);
