@@ -1,0 +1,25 @@
+{
+	"name": "extracom-site-builder",
+	"private": true,
+	"packageManager": "yarn@4.13.0",
+	"workspaces": [
+		"docs",
+		"apps/*",
+		"packages/*"
+	],
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.5",
+		"@commitlint/cli": "^20.4.3",
+		"@commitlint/config-conventional": "^20.4.3",
+		"husky": "^9.1.7",
+		"turbo": "^2.7.4"
+	},
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"lint": "turbo lint",
+		"format": "biome format --write .",
+		"check": "biome check .",
+		"prepare": "husky"
+	}
+}

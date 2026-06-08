@@ -1,0 +1,45 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Turbo
+.turbo/
+
+# Build outputs
+dist/
+.next/
+out/
+*.tsbuildinfo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Yarn
+.yarn/
+!.yarn/releases
+!.yarn/plugins
+
+# Sources client — images recuperees des sites existants (binaires ignores, images.md conserve)
+docs/projets/*/sources/site-existant/*.jpg
+docs/projets/*/sources/site-existant/*.jpeg
+docs/projets/*/sources/site-existant/*.png
+docs/projets/*/sources/site-existant/*.gif
+docs/projets/*/sources/site-existant/*.webp
+docs/projets/*/sources/site-existant/*.svg
+
+# Divers
+*.log
+.claude/projects/
+.claude/settings.local.json
